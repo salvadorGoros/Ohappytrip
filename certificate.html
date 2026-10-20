@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificate - Oh Happy trip</title>
-    
+    <link rel="icon" type="image/png" href="./static/img/ohHappyTripLogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-    <link href="static/css/style.css" rel="stylesheet" />
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="./static/css/style.css" rel="stylesheet" />
 </head>
 <body class="fondo">
 
@@ -21,28 +21,31 @@
       <div class="fuego" style="left: 35%; animation-delay: 2.2s;"></div>
     </div>
     
-    <!-- HEADER CENTRADO -->
-    <div class="estiloHeader">
-      <a href="/" class="header-btn"><h1>Oh Happy trip</h1></a>
-      
-      <div class="botones-nav">
-        <a href="/disney.html" class="estilos"> Disney </a>
-        <a href="/universal.html" class="estilos">Universal</a>
-        <a href="/cruceros.html" class="estilos"> Cruceros </a>
-        <a href="/playas.html" class="estilos"> Playas </a>
-        <!-- Pestaña Activa -->
-        <a href="/certificate.html" class="estilos" style="background: linear-gradient(135deg, rgba(89, 46, 113, 0.95), rgba(38, 208, 206, 0.95)); border-color: transparent; color: white; box-shadow: 0 0 15px rgba(38, 208, 206, 0.6);"> Certificate </a>
-      </div>
+    <header class="estiloHeader">
+      <nav class="botones-nav" aria-label="Navegación principal">
+        <a href="index.html" class="estilos"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+        <a href="cotizar.html" class="estilos"><i class="fa-solid fa-file-invoice-dollar"></i><span>Cotizar</span></a>
+        <a href="disney.html" class="estilos"><i class="fa-solid fa-hat-wizard" aria-hidden="true"></i><span>Disney</span></a>
+        <a href="universal.html" class="estilos"><i class="fa-solid fa-earth-americas"></i><span>Universal</span></a>
+        <a href="cruceros.html" class="estilos"><i class="fa-solid fa-ship"></i><span>Cruceros</span></a>
+        <a href="playas.html" class="estilos"><i class="fa-solid fa-umbrella-beach"></i><span>Playas</span></a>
+        <a href="certificate.html" class="estilos" aria-current="page"><i class="fa-solid fa-award"></i><span>Certificado</span></a>
+      </nav>
+    </header>
+
+    <div class="marca-discreta marca-centrada">
+      <img src="./static/img/ohHappyTripLogo.png" alt="">
+      Oh Happy Trip
     </div>
 
     <!-- CARRUSEL -->
     <div class="carrusel-contenedor">
       <div class="carrusel-fotos">
-        <img src="static\img\MK.avif" alt="Magic Kingdom">
-        <img src="static\img\uni-stdios.webp" alt="Epic Universe">
-        <img src="static\img\crucero1.webp" alt="Crucero 1">
-        <img src="static\img\playa-barco.webp" alt="Playa y barco">
-        <img src="static\img\MK.avif" alt="Magic Kingdom">
+        <img src="./static/img/MK.avif" alt="Magic Kingdom">
+        <img src="./static/img/uni-stdios.webp" alt="Epic Universe">
+        <img src="./static/img/crucero1.webp" alt="Crucero 1">
+        <img src="./static/img/playa-barco.webp" alt="Playa y barco">
+        <img src="./static/img/MK.avif" alt="Magic Kingdom">
       </div>
     </div>
 
@@ -69,8 +72,8 @@
    
     <!-- BOTÓN DE ACCIÓN ELEGANTE -->
     <div style="display: flex; justify-content: center; margin: 20px 0 60px 0; position: relative; z-index: 10;">
-      <a href="https://linktr.ee/Andylugoh.happytrip" target="_blank" class="btn-cotizar certificado">
-        <i class="fa-solid fa-award"></i> Certificate como Agente
+      <a href="https://tr.ee/_pTHk9q0YZ" target="_blank" rel="noopener noreferrer" class="btn-cotizar certificado">
+        <i class="fa-solid fa-award"></i> Certificate
       </a>
     </div>
 
@@ -118,7 +121,7 @@
       
       <!-- Botón principal (Siempre visible) -->
       <div class="btn-flotante-principal">
-        <i class="fa-solid fa-comments"></i>
+        <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
       </div>
       
       <!-- Redes que salen hacia arriba al pasar el mouse -->
@@ -131,5 +134,12 @@
       </div>
       
     </div>
+    <footer class="footer-elegante">
+      <img class="footer-logo" src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip">
+      <div class="footer-copy">
+        <p><strong>Oh Happy Trip</strong> · Planeamos contigo cada detalle.</p>
+        <p>© 2026 Todos los derechos reservados.</p>
+      </div>
+    </footer>
 </body> 
 </html>

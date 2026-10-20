@@ -1,168 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playas - Oh Happy trip</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-    <link href="static/css/style.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conoce Xcaret en la Riviera Maya: ríos subterráneos, naturaleza, cultura, playa y espectáculos para planear una visita inolvidable.">
+  <title>Xcaret y Riviera Maya | Oh Happy Trip</title>
+  <link rel="icon" type="image/png" href="./static/img/ohHappyTripLogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/style.css">
 </head>
-<body class="fondo">
+<body class="fondo pagina-xcaret">
+  <div class="fuegos-artificiales" aria-hidden="true">
+    <div class="fuego" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="fuego" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="fuego" style="left: 80%; animation-delay: 0.8s;"></div>
+    <div class="fuego" style="left: 35%; animation-delay: 2.2s;"></div>
+  </div>
 
-    <!-- EFECTO FUEGOS ARTIFICIALES -->
-    <div class="fuegos-artificiales">
-      <div class="fuego" style="left: 20%; animation-delay: 0s;"></div>
-      <div class="fuego" style="left: 50%; animation-delay: 1.5s;"></div>
-      <div class="fuego" style="left: 80%; animation-delay: 0.8s;"></div>
-      <div class="fuego" style="left: 35%; animation-delay: 2.2s;"></div>
+  <header class="estiloHeader">
+    <nav class="botones-nav" aria-label="Navegación principal">
+      <a href="index.html" class="estilos"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+      <a href="cotizar.html" class="estilos"><i class="fa-solid fa-file-invoice-dollar"></i><span>Cotizar</span></a>
+      <a href="disney.html" class="estilos"><i class="fa-solid fa-hat-wizard" aria-hidden="true"></i><span>Disney</span></a>
+      <a href="universal.html" class="estilos"><i class="fa-solid fa-earth-americas"></i><span>Universal</span></a>
+      <a href="cruceros.html" class="estilos"><i class="fa-solid fa-ship"></i><span>Cruceros</span></a>
+      <a href="playas.html" class="estilos" aria-current="page"><i class="fa-solid fa-umbrella-beach"></i><span>Playas</span></a>
+      <a href="certificate.html" class="estilos"><i class="fa-solid fa-award"></i><span>Certificado</span></a>
+    </nav>
+  </header>
+
+  <main class="contenido-destino">
+    <section class="introduccion-destino">
+      <div class="marca-discreta"><img src="./static/img/ohHappyTripLogo.png" alt="">Oh Happy Trip</div>
+      <span class="sobrelinea">Riviera Maya · Quintana Roo</span>
+      <h1>Xcaret: naturaleza, cultura y mar</h1>
+      <p>Xcaret es un parque eco-arqueológico junto al Caribe mexicano, pensado para recorrerlo a tu propio ritmo. Reúne paisajes naturales, ríos, vida silvestre, expresiones culturales y actividades para pasar un día completo entre la selva y el mar.</p>
+    </section>
+
+    <img class="imagen-destino" src="./static/img/xcaret.jpg" alt="Vista panorámica del parque Xcaret junto al mar Caribe" fetchpriority="high">
+
+    <section class="seccion-destino">
+      <span class="sobrelinea">Descubre el parque</span>
+      <h2>Experiencias para todo el día</h2>
+      <p>El parque tiene diferentes zonas y actividades. No es necesario hacerlo todo en una visita: conviene elegir prioridades y organizar el recorrido considerando distancias, horarios de espectáculos y tiempos de descanso.</p>
+      <div class="rejilla-experiencias">
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-water" aria-hidden="true"></i>
+          <h3>Ríos subterráneos</h3>
+          <p>Una de las experiencias más conocidas de Xcaret es recorrer ríos de agua natural que atraviesan cuevas y paisajes de roca. Hay tramos y salidas distribuidos dentro del parque; toma en cuenta que implica nadar, usar chaleco salvavidas y caminar por superficies húmedas.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-umbrella-beach" aria-hidden="true"></i>
+          <h3>Caletas, playa y descanso</h3>
+          <p>También hay espacios junto al mar y zonas para descansar entre actividades. Son una buena pausa para disfrutar el paisaje del Caribe; la disponibilidad de áreas, servicios y equipo depende del acceso contratado y las condiciones del día.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+          <h3>Naturaleza y fauna</h3>
+          <p>Senderos, jardines y espacios de observación permiten acercarse a la biodiversidad de la región. Las áreas dedicadas a flora y fauna forman parte del recorrido y promueven una visita respetuosa de los ecosistemas.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-landmark" aria-hidden="true"></i>
+          <h3>Patrimonio y cultura mexicana</h3>
+          <p>El parque integra referencias a la historia y a las tradiciones de México mediante espacios temáticos, música, danzas y exhibiciones. La visita culmina habitualmente con el espectáculo nocturno Xcaret México Espectacular, cuya programación puede variar.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-utensils" aria-hidden="true"></i>
+          <h3>Comida y servicios</h3>
+          <p>En el parque hay opciones de alimentos, bebidas, tiendas y servicios para visitantes. Algunas comidas o experiencias pueden requerir una modalidad de entrada o pago distinto; compara las inclusiones antes de elegir tu paquete.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-person-walking" aria-hidden="true"></i>
+          <h3>Un recorrido a tu ritmo</h3>
+          <p>Hay actividades tranquilas y otras que implican nadar o caminar durante periodos prolongados. Lleva calzado adecuado, traje de baño, protección solar permitida por el parque y una muda seca; consulta la información de accesibilidad si alguien del grupo la necesita.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="seccion-destino">
+      <span class="sobrelinea">Prepara una visita cómoda</span>
+      <h2>Cómo aprovechar tu día en Xcaret</h2>
+      <div class="rejilla-experiencias">
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+          <h3>Prioriza las actividades</h3>
+          <p>Decide qué ríos, zonas naturales y actividades culturales quieres conocer. Revisa los horarios del día y calcula el tiempo para desplazarte entre áreas sin dejar el espectáculo final para el último momento.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-bus" aria-hidden="true"></i>
+          <h3>Traslados y estancia</h3>
+          <p>Xcaret está en la Riviera Maya, al sur de Playa del Carmen. Puedes planear transporte desde tu hotel o consultar si tu paquete incluye traslado; confirma punto de salida, horario de regreso y condiciones antes de reservar.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+          <h3>Elige el acceso correcto</h3>
+          <p>Existen distintas modalidades y paquetes con servicios e inclusiones diferentes. Verifica si contemplan alimentos, equipo para actividades acuáticas, transporte u opciones adicionales y revisa las políticas aplicables a la fecha.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-sun" aria-hidden="true"></i>
+          <h3>Clima y comodidad</h3>
+          <p>Es una experiencia al aire libre en clima tropical. Lleva ropa cómoda, agua y protección solar permitida; consulta las indicaciones oficiales sobre objetos personales, actividades, condiciones del mar y restricciones de acceso.</p>
+        </article>
+      </div>
+      <div class="nota-destino">Xcaret ofrece más actividades de las que normalmente se pueden recorrer con calma en un solo día. La disponibilidad, horarios, costos, transporte, alimentos y servicios incluidos dependen de la entrada, la fecha y el paquete reservado. Confirma los detalles vigentes antes de viajar.</div>
+    </section>
+
+    <div class="accion-destino">
+      <a href="cotizar.html" class="btn-cotizar playas"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i> Cotiza tu viaje a Xcaret</a>
     </div>
-    
-    <!-- HEADER CENTRADO -->
-    <div class="estiloHeader">
-      <a href="/" class="header-btn"><h1>Oh Happy trip</h1></a>
-      
-      <div class="botones-nav">
-        <a href="/disney.html" class="estilos"> Disney </a>
-        <a href="/universal.html" class="estilos">Universal</a>
-        <a href="/cruceros.html" class="estilos"> Cruceros </a>
-        <!-- Pestaña Activa -->
-        <a href="/playas.html" class="estilos" style="background: linear-gradient(135deg, rgba(89, 46, 113, 0.95), rgba(38, 208, 206, 0.95)); border-color: transparent; color: white; box-shadow: 0 0 15px rgba(38, 208, 206, 0.6);"> Playas </a>
-        <a href="/certificate.html" class="estilos"> Certificate </a>
-      </div>
+  </main>
+
+  <div class="menu-flotante">
+    <div class="btn-flotante-principal"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i></div>
+    <div class="redes-ocultas">
+      <a href="https://api.whatsapp.com/send?phone=525519647258" target="_blank" rel="noopener noreferrer" class="btn-flotante-red wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://instagram.com/andylugoh.happytrip" target="_blank" rel="noopener noreferrer" class="btn-flotante-red ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://tiktok.com/@andylugohappytrip" target="_blank" rel="noopener noreferrer" class="btn-flotante-red tk" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/share/14GoXGc35Pu/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="btn-flotante-red fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.youtube.com/@andrealugoh.happytrip" target="_blank" rel="noopener noreferrer" class="btn-flotante-red yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
     </div>
-
-    <!-- CARRUSEL -->
-    <div class="carrusel-contenedor">
-      <div class="carrusel-fotos">
-        <img src="static\img\playa-barco.webp" alt="Playa y barco">
-        <img src="static\img\xcaret.jpg" alt="Xcaret">
-        <img src="static\img\playa-palma.jpg" alt="Playa Palma">
-        <img src="static\img\playa-carru.jpg" alt="Playa carrusel">
-        <img src="static\img\playa-barco.webp" alt="Playa y barco">
-      </div>
+  </div>
+  <footer class="footer-elegante">
+    <img class="footer-logo" src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip">
+    <div class="footer-copy">
+      <p><strong>Oh Happy Trip</strong> · Planeamos contigo cada detalle.</p>
+      <p>© 2026 Todos los derechos reservados.</p>
     </div>
-
-    <!-- INFORMACIÓN PLAYAS -->
-    <div class="contenedor-tarjetas">
-      <div class="tarjeta-info">
-        <i class="fa-solid fa-martini-glass-citrus" style="color: #ff9966;"></i>
-        <h3>Relax y Todo Incluido</h3>
-        <p>Los mejores resorts en Cancún, Riviera Maya, Los Cabos y Punta Cana. Bebidas premium, gastronomía internacional y servicio a la habitación.</p>
-      </div>
-      
-      <div class="tarjeta-info">
-        <i class="fa-solid fa-water" style="color: #00e5ff;"></i>
-        <h3>Aventura Tropical</h3>
-        <p>No todo es tomar el sol. Organizo tus excursiones a zonas arqueológicas, cenotes ocultos, nado con delfines y tours de snorkel en arrecifes.</p>
-      </div>
-
-      <div class="tarjeta-info">
-        <i class="fa-solid fa-heart" style="color: #ff5e62;"></i>
-        <h3>Viajes a tu Medida</h3>
-        <p>Ya sea una luna de miel romántica, un viaje de graduación, o las vacaciones familiares perfectas, armamos el plan ideal para tu presupuesto.</p>
-      </div>
-    </div>
-
-    <!-- BOTÓN DE ACCIÓN ELEGANTE -->
-    <div style="display: flex; justify-content: center; margin: 20px 0 60px 0; position: relative; z-index: 10;">
-      <a href="https://docs.google.com/forms/d/1EWjZT7udQClC9fk71IZ1sOw2eT8fMCg1Src9KdKPdGk/edit?usp=forms_home&ouid=102907267403816279220&ths=true&pli=1" target="_blank" class="btn-cotizar playas">
-        <i class="fa-solid fa-umbrella-beach"></i> Cotizar Playa
-      </a>
-    </div>
-
-<!-- CÓDIGO JAVASCRIPT PARA EL POLVO DE TINKERBELL -->
-    <script>
-      document.addEventListener("mousemove", function(e) {
-        // Generamos una chispa solo algunas veces para no saturar la página y que se vea natural
-        if (Math.random() > 0.4) {
-          let chispa = document.createElement("span");
-          chispa.className = "chispa-magica";
-          
-          // Coloca la chispa exactamente en la punta del mouse
-          chispa.style.left = e.clientX + "px";
-          chispa.style.top = e.clientY + "px";
-          
-          // Calcula una dirección aleatoria para que el polvo "caiga" y se esparza
-          let tx = (Math.random() - 0.5) * 60 + "px"; // Movimiento a los lados
-          let ty = (Math.random() * 60) + 20 + "px";  // Movimiento hacia abajo por gravedad
-          chispa.style.setProperty("--tx", tx);
-          chispa.style.setProperty("--ty", ty);
-          
-          // Dibuja la chispa en la pantalla
-          document.body.appendChild(chispa);
-          
-          // Borra la chispa después de 800 milisegundos (cuando termina su animación)
-          setTimeout(() => {
-            chispa.remove();
-          }, 800);
-        }
-      });
-    </script>
-    <!-- CÓDIGO JAVASCRIPT PARA EFECTOS DEL MOUSE -->
-    <script>
-      // 1. POLVO DE TINKERBELL AL MOVER EL MOUSE
-      document.addEventListener("mousemove", function(e) {
-        if (Math.random() > 0.4) {
-          let chispa = document.createElement("span");
-          chispa.className = "chispa-magica";
-          chispa.style.left = e.clientX + "px";
-          chispa.style.top = e.clientY + "px";
-          
-          let tx = (Math.random() - 0.5) * 60 + "px"; 
-          let ty = (Math.random() * 60) + 20 + "px";  
-          chispa.style.setProperty("--tx", tx);
-          chispa.style.setProperty("--ty", ty);
-          
-          document.body.appendChild(chispa);
-          
-          setTimeout(() => {
-            chispa.remove();
-          }, 800);
-        }
-      });
-
-      // 2. NUEVO: FUEGO ARTIFICIAL AL HACER CLIC
-      document.addEventListener("click", function(e) {
-        let explosion = document.createElement("div");
-        explosion.className = "explosion-click";
-        
-        // Colocamos la explosión justo en las coordenadas del clic
-        explosion.style.left = e.clientX + "px";
-        explosion.style.top = e.clientY + "px";
-        
-        document.body.appendChild(explosion);
-        
-        // Removemos el elemento después de 800ms (cuando acaba la animación)
-        setTimeout(() => {
-          explosion.remove();
-        }, 800);
-      });
-    </script>
-
-    <!-- MENÚ FLOTANTE EXPANDIBLE -->
-    <div class="menu-flotante">
-      
-      <!-- Botón principal (Siempre visible) -->
-      <div class="btn-flotante-principal">
-        <i class="fa-solid fa-comments"></i>
-      </div>
-      
-      <!-- Redes que salen hacia arriba al pasar el mouse -->
-      <div class="redes-ocultas">
-        <a href="https://api.whatsapp.com/send?phone=525519647258" target="_blank" class="btn-flotante-red wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="https://instagram.com/andylugoh.happytrip" target="_blank" class="btn-flotante-red ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://tiktok.com/@andylugohappytrip" target="_blank" class="btn-flotante-red tk" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://www.facebook.com/share/14GoXGc35Pu/?mibextid=wwXIfr" target="_blank" class="btn-flotante-red fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="https://www.youtube.com/@andrealugoh.happytrip" target="_blank" class="btn-flotante-red yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      </div>
-      
-    </div>
-  </body> <!-- Aquí termina tu documento -->
-  </body> <!-- Aquí termina tu documento -->
-</html>
-
+  </footer>
 </body>
 </html>

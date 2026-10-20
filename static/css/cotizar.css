@@ -1,0 +1,186 @@
+.cotizador-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cotizador-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #34495e;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 15px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Diseño de contadores (Steppers) */
+.pasajeros-group {
+  display: flex;
+  gap: 20px;
+}
+.contador-caja {
+  flex: 1;
+}
+.stepper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.btn-stepper {
+  background: #f1f2f6;
+  border: none;
+  padding: 12px 18px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #2f3542;
+  transition: background 0.2s;
+}
+.btn-stepper:hover {
+  background: #dfe4ea;
+}
+.stepper input {
+  width: 100%;
+  text-align: center;
+  border: none;
+  pointer-events: none;
+  font-size: 16px;
+  padding: 0;
+  background: transparent;
+}
+
+/* Grillas para checkboxes y radios */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+}
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+}
+.checkbox-grid label, .radio-group label {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.fechas-group {
+  display: flex;
+  gap: 20px;
+}
+.fechas-group div {
+  flex: 1;
+}
+
+.btn-guardar {
+  width: 100%;
+  padding: 15px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+.btn-guardar:hover {
+  background-color: #2980b9;
+}
+
+/* Clase maestra para ocultar elementos dinámicamente */
+.oculto {
+  display: none !important;
+}
+
+/* =========================================================
+   MEDIA QUERIES PARA CELULARES Y PANTALLAS PEQUEÑAS 
+   ========================================================= */
+@media screen and (max-width: 600px) {
+  /* Reducir los márgenes y padding del contenedor principal para aprovechar el espacio */
+  .cotizador-container {
+    padding: 20px 15px;
+    margin: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Sombra más sutil */
+  }
+
+  /* Ajustar tamaño del título */
+  .cotizador-container h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  /* Apilar los grupos de fechas verticalmente en vez de uno al lado del otro */
+  .fechas-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Apilar los grupos de pasajeros verticalmente */
+  .pasajeros-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Pasar la grilla de checkboxes de 2 columnas a 1 sola columna */
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  /* Aumentar el área de "toque" de los botones de + y - para facilitar uso con el dedo */
+  .btn-stepper {
+    padding: 15px 22px; 
+  }
+  
+  /* Evitar que el texto de los labels sea muy ajustado */
+  .form-group label {
+    font-size: 14px;
+  }
+}
