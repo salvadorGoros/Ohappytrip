@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizar - Oh Happy Trip</title>
+    <link rel="icon" type="image/png" href="./static/img/ohHappyTripLogo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./static/css/style.css"> 
+</head>
+<body class="fondo">
+    
+    <!-- EFECTO DE FUEGOS ARTIFICIALES DE FONDO -->
+    <div class="fuegos-artificiales">
+      <div class="fuego" style="left: 20%; animation-delay: 0s;"></div>
+      <div class="fuego" style="left: 50%; animation-delay: 1.5s;"></div>
+      <div class="fuego" style="left: 80%; animation-delay: 0.8s;"></div>
+      <div class="fuego" style="left: 35%; animation-delay: 2.2s;"></div>
+    </div>
+
+    <header class="estiloHeader">
+      <nav class="botones-nav" aria-label="Navegación principal">
+        <a href="index.html" class="estilos"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+        <a href="cotizar.html" class="estilos" aria-current="page"><i class="fa-solid fa-file-invoice-dollar"></i><span>Cotizar</span></a>
+        <a href="disney.html" class="estilos"><i class="fa-solid fa-hat-wizard" aria-hidden="true"></i><span>Disney</span></a>
+        <a href="universal.html" class="estilos"><i class="fa-solid fa-earth-americas"></i><span>Universal</span></a>
+        <a href="cruceros.html" class="estilos"><i class="fa-solid fa-ship"></i><span>Cruceros</span></a>
+        <a href="playas.html" class="estilos"><i class="fa-solid fa-umbrella-beach"></i><span>Playas</span></a>
+        <a href="certificate.html" class="estilos"><i class="fa-solid fa-award"></i><span>Certificado</span></a>
+      </nav>
+    </header>
+    
+  <!-- CONTENIDO PRINCIPAL: EL FORMULARIO -->
+  <main class="contenedor-principal">
+    <div class="contenedor-formulario">
+      <div class="marca-formulario">
+        <img src="./static/img/ohHappyTripLogo.png" alt="">
+        <span>Oh Happy Trip · Planeamos contigo</span>
+      </div>
+      <h2 class="cotizar-titulo">Cotiza tu viaje ideal</h2>
+      <form id="formCotizacion">
+        
+        <div class="fila-form">
+            <!-- Nombre -->
+            <div class="grupo-form">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+            </div>
+
+            <!-- País de salida -->
+            <div class="grupo-form">
+            <label for="paisSalida">País de salida</label>
+            <input type="text" id="paisSalida" name="paisSalida" placeholder="Ej. México" required>
+            </div>
+        </div>
+
+        <!-- Pasajeros (Contadores) -->
+        <div class="fila-form">
+          <div class="grupo-form">
+            <label>Adultos (Min 1)</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <button type="button" class="btn-stepper" onclick="actualizarContador('adultos', 'decrementar')">-</button>
+              <input type="number" id="adultos" name="adultos" value="1" min="1" readonly style="width: 60px; text-align: center;">
+              <button type="button" class="btn-stepper" onclick="actualizarContador('adultos', 'incrementar')">+</button>
+            </div>
+          </div>
+          <div class="grupo-form">
+            <label>Menores de edad</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+              <button type="button" class="btn-stepper" onclick="actualizarContador('ninos', 'decrementar')">-</button>
+              <input type="number" id="ninos" name="ninos" value="0" min="0" readonly style="width: 60px; text-align: center;">
+              <button type="button" class="btn-stepper" onclick="actualizarContador('ninos', 'incrementar')">+</button>
+            </div>
+            
+            <!-- NUEVO: Contenedor donde aparecerán las edades dinámicamente -->
+            <div id="contenedor_edades_ninos" style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            </div>
+          </div>
+
+        <!-- Destino -->
+        <div class="grupo-form" style="margin-bottom: 20px;">
+          <label for="destino">Destino</label>
+          <select id="destino" name="destino" required onchange="manejarDestino(this.value)">
+            <option value="" disabled selected>Selecciona un destino...</option>
+            <option value="orlando">Orlando (Disneyworld, Universal Studios)</option>
+            <option value="california">California (Disneyland, Universal Studios)</option>
+            <option value="crucero">Cruceros Disney</option>
+            <option value="playas">Playas mexicanas</option>
+          </select>
+        </div>
+
+        <!-- Sub-campos Dinámicos de Destino -->
+        <div id="sub_orlando" class="grupo-form sub-opcion oculto">
+          <label>Selecciona los parques a visitar:</label>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="parques" value="Magic Kingdom"> Magic Kingdom</label>
+            <label><input type="checkbox" name="parques" value="Animal Kingdom"> Animal Kingdom</label>
+            <label><input type="checkbox" name="parques" value="Hollywood Studios"> Hollywood Studios</label>
+            <label><input type="checkbox" name="parques" value="Epcot"> Epcot</label>
+            <label><input type="checkbox" name="parques" value="Universal Studios"> Universal Studios</label>
+            <label><input type="checkbox" name="parques" value="Islands of Adventure"> Islands of Adventure</label>
+            <label><input type="checkbox" name="parques" value="Epic Universe"> Epic Universe</label>
+          </div>
+        </div>
+
+        <div id="sub_california" class="grupo-form sub-opcion oculto">
+          <label>Selecciona los parques a visitar:</label>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="parques" value="Disneyland"> Disneyland</label>
+            <label><input type="checkbox" name="parques" value="Disney California Adventure"> Disney California</label>
+            <label><input type="checkbox" name="parques" value="Universal Studios Hollywood"> Universal Studios</label>
+          </div>
+        </div>
+
+        <div id="sub_crucero" class="grupo-form sub-opcion oculto">
+          <label>Selecciona el crucero:</label>
+          <div class="checkbox-grid">
+            <label><input type="checkbox" name="cruceros" value="Disney Magic"> Disney Magic</label>
+            <label><input type="checkbox" name="cruceros" value="Disney Dream"> Disney Dream</label>
+            <label><input type="checkbox" name="cruceros" value="Disney Wish"> Disney Wish</label>
+          </div>
+        </div>
+
+        <div id="sub_playas" class="grupo-form sub-opcion oculto">
+          <label for="playaEspecifica">¿Qué playa te gustaría visitar?</label>
+          <input type="text" id="playaEspecifica" name="playaEspecifica" placeholder="Ej. Cancún, Huatulco...">
+        </div>
+
+        <!-- Hospedaje -->
+        <div id="seccion_hospedaje" class="grupo-form oculto" style="margin-top: 20px;">
+          <label>Hospedaje</label>
+          
+          <div id="hospedaje_parques" class="radio-group oculto">
+            <label><input type="radio" name="hospedaje" value="Hotel Disney"> Hotel Disney</label>
+            <label><input type="radio" name="hospedaje" value="Hotel Universal"> Hotel Universal</label>
+            <label><input type="radio" name="hospedaje" value="Hotel normal"> Hotel normal</label>
+            <label><input type="radio" name="hospedaje" value="Multiples hoteles"> Múltiples hoteles</label>
+          </div>
+
+          <div id="hospedaje_playas" class="radio-group oculto">
+            <label><input type="radio" name="hospedaje" value="Hotel normal"> Hotel normal</label>
+            <label><input type="radio" name="hospedaje" value="Multiples hoteles"> Múltiples hoteles</label>
+          </div>
+        </div>
+
+        <!-- Fechas -->
+        <div class="fila-form" style="margin-top: 20px;">
+          <div class="grupo-form">
+            <label for="fechaInicio">Fecha de inicio</label>
+            <input type="date" id="fechaInicio" name="fechaInicio" required>
+          </div>
+          <div class="grupo-form">
+            <label for="fechaFin">Fecha de fin</label>
+            <input type="date" id="fechaFin" name="fechaFin" required>
+          </div>
+        </div>
+
+        <!-- Especificaciones -->
+        <div class="grupo-form" style="margin-top: 20px;">
+          <label for="especificaciones">Especificaciones del viaje</label>
+          <textarea id="especificaciones" name="especificaciones" rows="4" placeholder="Ej. Celebraciones especiales, traslados..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-guardar">Guardar Cotización</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer-elegante">
+    <img class="footer-logo" src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip">
+    <div class="footer-copy">
+      <p><strong>Oh Happy Trip</strong> · Planeamos contigo cada detalle.</p>
+      <p>&copy; 2026 Oh Happy Trip. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="cotizar.js"></script>
+
+  <!-- EFECTOS DE CHISPAS Y EXPLOSIÓN AL CLIC -->
+  <script>
+    document.addEventListener("mousemove", function(e) {
+      if (Math.random() > 0.4) {
+        let chispa = document.createElement("span");
+        chispa.className = "chispa-magica";
+        chispa.style.left = e.clientX + "px";
+        chispa.style.top = e.clientY + "px";
+        
+        let tx = (Math.random() - 0.5) * 60 + "px"; 
+        let ty = (Math.random() * 60) + 20 + "px";  
+        chispa.style.setProperty("--tx", tx);
+        chispa.style.setProperty("--ty", ty);
+        
+        document.body.appendChild(chispa);
+        
+        setTimeout(() => {
+          chispa.remove();
+        }, 800);
+      }
+    });
+
+    document.addEventListener("click", function(e) {
+      let explosion = document.createElement("div");
+      explosion.className = "explosion-click";
+      explosion.style.left = e.clientX + "px";
+      explosion.style.top = e.clientY + "px";
+      document.body.appendChild(explosion);
+      
+      setTimeout(() => {
+        explosion.remove();
+      }, 800);
+    });
+  </script>
+</body>
+</html>

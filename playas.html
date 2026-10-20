@@ -1,68 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playas</title>
- <link href="./style.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conoce Xcaret en la Riviera Maya: ríos subterráneos, naturaleza, cultura, playa y espectáculos para planear una visita inolvidable.">
+  <title>Xcaret y Riviera Maya | Oh Happy Trip</title>
+  <link rel="icon" type="image/png" href="./static/img/ohHappyTripLogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/style.css">
 </head>
-<body class="fondo">
-    <div
-      style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(183, 197, 224);
-        gap: 20px;
-        margin-top: 20px;
-      "
-    >
-      <a href="/" class="estilos"
-        ><h1">Oh Happy trip</h1></a
-      >
-      <a href="/disney.html" class="estilos" style=""> Disney </a>
-      <a href="/universal.html" class="estilos">Universal</a>
-      <a href="/cruceros.html" class="estilos"> Cruceros </a>
-      <a href="/playas.html" class="header-btn"> Playas </a>
-      <a href="/certificate.html" class="estilos"> Certificate </a>
-    </div>
-<div class="carrusel-contenedor">
-  <div class="carrusel-fotos">
-    <img src="playa-barco.webp" alt="Castillo Disney">
-    <img src="xcaret.jpg" alt="Viaje 2">
-    <img src="playa-palma.jpg" alt="Viaje 3">
-    <img src="playa-carru.jpg" alt="Castillo Disney">
+<body class="fondo pagina-xcaret">
+  <div class="fuegos-artificiales" aria-hidden="true">
+    <div class="fuego" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="fuego" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="fuego" style="left: 80%; animation-delay: 0.8s;"></div>
+    <div class="fuego" style="left: 35%; animation-delay: 2.2s;"></div>
   </div>
-</div>
 
-<p style="padding: 0.5rem; border: 2px; font-size: 20px; text-align: center;
-background-color: rgb(183, 197, 224);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 20px;">
-        ¡Presiona el boton para hacer la cotización de tu proximo Crucero!
-      </p>
-      
-      <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 20px 0;">
-  
-  <a href="https://docs.google.com/forms/d/1EWjZT7udQClC9fk71IZ1sOw2eT8fMCg1Src9KdKPdGk/edit?usp=forms_home&ouid=102907267403816279220&ths=true&pli=1" target="_blank" style="text-decoration: none;">
-    <img 
-      src="logo-playa.png" 
-      alt="Mis Redes" 
-      style="
-        width: 100px;         
-        height: auto; 
-        display: block; 
-        transition: transform 0.3s ease;
-        cursor: pointer;
-      "
-      onmouseover="this.style.transform='scale(1.1)'" 
-      onmouseout="this.style.transform='scale(1)'"
-    >
-  </a>
+  <header class="estiloHeader">
+    <nav class="botones-nav" aria-label="Navegación principal">
+      <a href="index.html" class="estilos"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+      <a href="cotizar.html" class="estilos"><i class="fa-solid fa-file-invoice-dollar"></i><span>Cotizar</span></a>
+      <a href="disney.html" class="estilos"><i class="fa-solid fa-hat-wizard" aria-hidden="true"></i><span>Disney</span></a>
+      <a href="universal.html" class="estilos"><i class="fa-solid fa-earth-americas"></i><span>Universal</span></a>
+      <a href="cruceros.html" class="estilos"><i class="fa-solid fa-ship"></i><span>Cruceros</span></a>
+      <a href="playas.html" class="estilos" aria-current="page"><i class="fa-solid fa-umbrella-beach"></i><span>Playas</span></a>
+      <a href="certificate.html" class="estilos"><i class="fa-solid fa-award"></i><span>Certificado</span></a>
+    </nav>
+  </header>
 
-</div>
+  <main class="contenido-destino">
+    <section class="introduccion-destino">
+      <div class="marca-discreta"><img src="./static/img/ohHappyTripLogo.png" alt="">Oh Happy Trip</div>
+      <span class="sobrelinea">Riviera Maya · Quintana Roo</span>
+      <h1>Xcaret: naturaleza, cultura y mar</h1>
+      <p>Xcaret es un parque eco-arqueológico junto al Caribe mexicano, pensado para recorrerlo a tu propio ritmo. Reúne paisajes naturales, ríos, vida silvestre, expresiones culturales y actividades para pasar un día completo entre la selva y el mar.</p>
+    </section>
 
+    <img class="imagen-destino" src="./static/img/xcaret.jpg" alt="Vista panorámica del parque Xcaret junto al mar Caribe" fetchpriority="high">
+
+    <section class="seccion-destino">
+      <span class="sobrelinea">Descubre el parque</span>
+      <h2>Experiencias para todo el día</h2>
+      <p>El parque tiene diferentes zonas y actividades. No es necesario hacerlo todo en una visita: conviene elegir prioridades y organizar el recorrido considerando distancias, horarios de espectáculos y tiempos de descanso.</p>
+      <div class="rejilla-experiencias">
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-water" aria-hidden="true"></i>
+          <h3>Ríos subterráneos</h3>
+          <p>Una de las experiencias más conocidas de Xcaret es recorrer ríos de agua natural que atraviesan cuevas y paisajes de roca. Hay tramos y salidas distribuidos dentro del parque; toma en cuenta que implica nadar, usar chaleco salvavidas y caminar por superficies húmedas.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-umbrella-beach" aria-hidden="true"></i>
+          <h3>Caletas, playa y descanso</h3>
+          <p>También hay espacios junto al mar y zonas para descansar entre actividades. Son una buena pausa para disfrutar el paisaje del Caribe; la disponibilidad de áreas, servicios y equipo depende del acceso contratado y las condiciones del día.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+          <h3>Naturaleza y fauna</h3>
+          <p>Senderos, jardines y espacios de observación permiten acercarse a la biodiversidad de la región. Las áreas dedicadas a flora y fauna forman parte del recorrido y promueven una visita respetuosa de los ecosistemas.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-landmark" aria-hidden="true"></i>
+          <h3>Patrimonio y cultura mexicana</h3>
+          <p>El parque integra referencias a la historia y a las tradiciones de México mediante espacios temáticos, música, danzas y exhibiciones. La visita culmina habitualmente con el espectáculo nocturno Xcaret México Espectacular, cuya programación puede variar.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-utensils" aria-hidden="true"></i>
+          <h3>Comida y servicios</h3>
+          <p>En el parque hay opciones de alimentos, bebidas, tiendas y servicios para visitantes. Algunas comidas o experiencias pueden requerir una modalidad de entrada o pago distinto; compara las inclusiones antes de elegir tu paquete.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-person-walking" aria-hidden="true"></i>
+          <h3>Un recorrido a tu ritmo</h3>
+          <p>Hay actividades tranquilas y otras que implican nadar o caminar durante periodos prolongados. Lleva calzado adecuado, traje de baño, protección solar permitida por el parque y una muda seca; consulta la información de accesibilidad si alguien del grupo la necesita.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="seccion-destino">
+      <span class="sobrelinea">Prepara una visita cómoda</span>
+      <h2>Cómo aprovechar tu día en Xcaret</h2>
+      <div class="rejilla-experiencias">
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-list-check" aria-hidden="true"></i>
+          <h3>Prioriza las actividades</h3>
+          <p>Decide qué ríos, zonas naturales y actividades culturales quieres conocer. Revisa los horarios del día y calcula el tiempo para desplazarte entre áreas sin dejar el espectáculo final para el último momento.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-bus" aria-hidden="true"></i>
+          <h3>Traslados y estancia</h3>
+          <p>Xcaret está en la Riviera Maya, al sur de Playa del Carmen. Puedes planear transporte desde tu hotel o consultar si tu paquete incluye traslado; confirma punto de salida, horario de regreso y condiciones antes de reservar.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+          <h3>Elige el acceso correcto</h3>
+          <p>Existen distintas modalidades y paquetes con servicios e inclusiones diferentes. Verifica si contemplan alimentos, equipo para actividades acuáticas, transporte u opciones adicionales y revisa las políticas aplicables a la fecha.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-sun" aria-hidden="true"></i>
+          <h3>Clima y comodidad</h3>
+          <p>Es una experiencia al aire libre en clima tropical. Lleva ropa cómoda, agua y protección solar permitida; consulta las indicaciones oficiales sobre objetos personales, actividades, condiciones del mar y restricciones de acceso.</p>
+        </article>
+      </div>
+      <div class="nota-destino">Xcaret ofrece más actividades de las que normalmente se pueden recorrer con calma en un solo día. La disponibilidad, horarios, costos, transporte, alimentos y servicios incluidos dependen de la entrada, la fecha y el paquete reservado. Confirma los detalles vigentes antes de viajar.</div>
+    </section>
+
+    <div class="accion-destino">
+      <a href="cotizar.html" class="btn-cotizar playas"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i> Cotiza tu viaje a Xcaret</a>
+    </div>
+  </main>
+
+  <div class="menu-flotante">
+    <div class="btn-flotante-principal"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i></div>
+    <div class="redes-ocultas">
+      <a href="https://api.whatsapp.com/send?phone=525519647258" target="_blank" rel="noopener noreferrer" class="btn-flotante-red wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://instagram.com/andylugoh.happytrip" target="_blank" rel="noopener noreferrer" class="btn-flotante-red ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://tiktok.com/@andylugohappytrip" target="_blank" rel="noopener noreferrer" class="btn-flotante-red tk" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/share/14GoXGc35Pu/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="btn-flotante-red fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.youtube.com/@andrealugoh.happytrip" target="_blank" rel="noopener noreferrer" class="btn-flotante-red yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+  </div>
+  <footer class="footer-elegante">
+    <img class="footer-logo" src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip">
+    <div class="footer-copy">
+      <p><strong>Oh Happy Trip</strong> · Planeamos contigo cada detalle.</p>
+      <p>© 2026 Todos los derechos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>

@@ -1,68 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cruceros</title>
-    <link href="./style.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Conoce qué ofrece Disney Cruise Line: entretenimiento, restaurantes, actividades familiares, camarotes y destinos para vivir unas vacaciones en el mar.">
+  <title>Cruceros Disney | Oh Happy Trip</title>
+  <link rel="icon" type="image/png" href="./static/img/ohHappyTripLogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/style.css">
 </head>
-<body class="fondo">
-    <div
-      style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgb(183, 197, 224);
-        gap: 20px;
-        margin-top: 20px;
-      "
-    >
-      <a href="/" class="estilos"
-        ><h1">Oh Happy trip</h1></a
-      >
-      <a href="/disney.html" class="estilos" style=""> Disney </a>
-      <a href="/universal.html" class="estilos">Universal</a>
-      <a href="/cruceros.html" class="header-btn"> Cruceros </a>
-      <a href="/playas.html" class="estilos"> Playas </a>
-      <a href="/certificate.html" class="estilos"> Certificate </a>
-    </div>
-<div class="carrusel-contenedor">
-  <div class="carrusel-fotos">
-    <img src="crucero1.webp" alt="Castillo Disney">
-    <img src="crucero2.jpg" alt="Viaje 2">
-    <img src="crucero3.jfif" alt="Viaje 3">
-    <img src="crucero4.jfif" alt="Castillo Disney">
+<body class="fondo pagina-cruceros">
+  <div class="fuegos-artificiales" aria-hidden="true">
+    <div class="fuego" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="fuego" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="fuego" style="left: 80%; animation-delay: 0.8s;"></div>
+    <div class="fuego" style="left: 35%; animation-delay: 2.2s;"></div>
   </div>
-</div>
 
-<p style="padding: 0.5rem; border: 2px; font-size: 20px; text-align: center;
-background-color: rgb(183, 197, 224);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 20px;">
-        ¡Presiona el boton para hacer la cotización de tu proximo Crucero!
-      </p>
-      
-      <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 20px 0;">
-  
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdf3dvMC5DBGI3zLefC6psZLJ0DUtiE0xWj7gW1Pk5vEeoTQA/viewform" target="_blank" style="text-decoration: none;">
-    <img 
-      src="crucero.png" 
-      alt="Mis Redes" 
-      style="
-        width: 100px;           
-        height: auto;        
-        display: block; 
-        transition: transform 0.3s ease;
-        cursor: pointer;
-      "
-      onmouseover="this.style.transform='scale(1.1)'" 
-      onmouseout="this.style.transform='scale(1)'"
-    >
-  </a>
+  <header class="estiloHeader">
+    <nav class="botones-nav" aria-label="Navegación principal">
+      <a href="index.html" class="estilos"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+      <a href="cotizar.html" class="estilos"><i class="fa-solid fa-file-invoice-dollar"></i><span>Cotizar</span></a>
+      <a href="disney.html" class="estilos"><i class="fa-solid fa-hat-wizard" aria-hidden="true"></i><span>Disney</span></a>
+      <a href="universal.html" class="estilos"><i class="fa-solid fa-earth-americas"></i><span>Universal</span></a>
+      <a href="cruceros.html" class="estilos" aria-current="page"><i class="fa-solid fa-ship"></i><span>Cruceros</span></a>
+      <a href="playas.html" class="estilos"><i class="fa-solid fa-umbrella-beach"></i><span>Playas</span></a>
+      <a href="certificate.html" class="estilos"><i class="fa-solid fa-award"></i><span>Certificado</span></a>
+    </nav>
+  </header>
 
-</div>
+  <main class="contenido-destino">
+    <section class="introduccion-destino">
+      <div class="marca-discreta"><img src="./static/img/ohHappyTripLogo.png" alt="">Oh Happy Trip</div>
+      <span class="sobrelinea">La magia también navega</span>
+      <h1>Disney Cruise Line</h1>
+      <p>Un crucero Disney combina días en el mar, destinos para explorar y entretenimiento inspirado en sus historias. A bordo hay actividades para niños, jóvenes y adultos, además de espacios para compartir en familia. El itinerario, los barcos y las experiencias disponibles cambian según la salida.</p>
+    </section>
 
+    <img class="imagen-destino" src="./static/img/crucero1.webp" alt="Mickey y Minnie frente a un barco de Disney Cruise Line" fetchpriority="high">
+
+    <section class="seccion-destino">
+      <span class="sobrelinea">Mucho más que llegar al destino</span>
+      <h2>¿Qué puedes disfrutar a bordo?</h2>
+      <p>Cada barco tiene su propio estilo y oferta, pero la experiencia reúne entretenimiento, gastronomía y espacios de descanso durante toda la navegación.</p>
+      <div class="rejilla-experiencias">
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-masks-theater" aria-hidden="true"></i>
+          <h3>Shows y entretenimiento</h3>
+          <p>Producciones escénicas, música, películas y actividades inspiradas en personajes e historias Disney. La programación se organiza por día y barco, así que podrás planear tus noches y reservar tiempo para disfrutar de la cubierta.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-utensils" aria-hidden="true"></i>
+          <h3>Comedor rotativo</h3>
+          <p>El sistema de comedor rotativo permite visitar distintos restaurantes principales durante el viaje, conservando normalmente el mismo equipo de servicio. También puede haber restaurantes exclusivos para adultos y opciones de comida rápida o casual; algunas experiencias requieren costo adicional.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-child-reaching" aria-hidden="true"></i>
+          <h3>Clubes para niños y jóvenes</h3>
+          <p>Espacios supervisados y actividades por grupos de edad ofrecen juegos, talleres y encuentros temáticos. Los rangos de edad, horarios y políticas de registro se establecen para cada club y barco; también hay actividades para disfrutar juntos.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-person-swimming" aria-hidden="true"></i>
+          <h3>Piscinas y actividades en cubierta</h3>
+          <p>Las cubiertas pueden incluir piscinas, chapoteaderos, juegos acuáticos y espacios al aire libre. La distribución y las atracciones varían entre barcos; la operación depende del clima, la edad y las reglas de seguridad.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-bed" aria-hidden="true"></i>
+          <h3>Camarotes para diferentes grupos</h3>
+          <p>Hay categorías interiores, con vista al mar, con balcón y suites, según el barco. Algunas habitaciones están diseñadas para familias y pueden ofrecer divisiones o espacios de almacenamiento; la capacidad y configuración dependen de la categoría.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-star" aria-hidden="true"></i>
+          <h3>Personajes y momentos especiales</h3>
+          <p>Durante el viaje suelen organizarse encuentros con personajes, fiestas en cubierta y actividades temáticas. La lista de personajes y los horarios se publican a bordo y pueden cambiar; algunos encuentros pueden requerir reservación.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="seccion-destino">
+      <span class="sobrelinea">Rutas para distintos estilos de vacaciones</span>
+      <h2>Destinos e itinerarios</h2>
+      <p>Disney Cruise Line navega distintas regiones según la temporada y el barco. Entre las rutas que pueden ofrecerse se encuentran el Caribe y las Bahamas, Alaska, Europa y otros itinerarios. Algunas salidas incluyen paradas en islas privadas de Disney, como Castaway Cay o Lookout Cay at Lighthouse Point, cuando forman parte de la ruta.</p>
+      <div class="rejilla-experiencias">
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+          <h3>Elige la duración y el puerto</h3>
+          <p>Compara noches de navegación, puerto de salida, escalas y tiempo en cada destino. Considera vuelos, noches de hotel antes o después y traslados para llegar al puerto con margen suficiente.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-person-walking-luggage" aria-hidden="true"></i>
+          <h3>Planea cada escala</h3>
+          <p>Puedes explorar por cuenta propia o revisar excursiones disponibles para la fecha. Calcula tiempos de embarque y retorno, y verifica qué actividades son adecuadas para la edad y movilidad de cada viajero.</p>
+        </article>
+      </div>
+      <div class="nota-destino"><strong>Importante:</strong> la tarifa, los impuestos, propinas, bebidas, internet, excursiones, restaurantes especiales y otros servicios pueden tener condiciones o cargos distintos. Confirma qué incluye exactamente la categoría y la salida que vas a reservar.</div>
+    </section>
+
+    <section class="seccion-destino">
+      <span class="sobrelinea">Antes de reservar</span>
+      <h2>Datos que conviene tener a la mano</h2>
+      <div class="rejilla-experiencias">
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-users" aria-hidden="true"></i>
+          <h3>Quiénes viajan</h3>
+          <p>Edades de los niños, número de huéspedes y necesidades de accesibilidad ayudan a comparar camarotes, clubes, horarios y actividades apropiadas.</p>
+        </article>
+        <article class="experiencia-destino">
+          <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+          <h3>Fechas y documentación</h3>
+          <p>Las temporadas influyen en precio y disponibilidad. Revisa con anticipación los documentos de viaje y requisitos de entrada de cada puerto para todas las personas del grupo.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="accion-destino">
+      <a href="cotizar.html" class="btn-cotizar cruceros"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i> Cotiza tu crucero Disney</a>
+    </div>
+  </main>
+
+  <div class="menu-flotante">
+    <div class="btn-flotante-principal"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i></div>
+    <div class="redes-ocultas">
+      <a href="https://api.whatsapp.com/send?phone=525519647258" target="_blank" rel="noopener noreferrer" class="btn-flotante-red wa" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://instagram.com/andylugoh.happytrip" target="_blank" rel="noopener noreferrer" class="btn-flotante-red ig" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://tiktok.com/@andylugohappytrip" target="_blank" rel="noopener noreferrer" class="btn-flotante-red tk" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/share/14GoXGc35Pu/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="btn-flotante-red fb" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="https://www.youtube.com/@andrealugoh.happytrip" target="_blank" rel="noopener noreferrer" class="btn-flotante-red yt" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+  </div>
+  <footer class="footer-elegante">
+    <img class="footer-logo" src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip">
+    <div class="footer-copy">
+      <p><strong>Oh Happy Trip</strong> · Planeamos contigo cada detalle.</p>
+      <p>© 2026 Todos los derechos reservados.</p>
+    </div>
+  </footer>
 </body>
 </html>
