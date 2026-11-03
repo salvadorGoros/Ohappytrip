@@ -70,7 +70,36 @@ function generarCamposEdades(cantidad) {
 }
 
 // Función para mostrar las opciones según el destino
-function manejarDestino(destino) {
+async function manejarDestino(destino) {
+    if (destino === 'orlando' || destino === 'california') {
+        const confirmado = await solicitarDocumentos();
+        if (!confirmado) {
+            alert('No puedes continuar con este destino sin visa y pasaporte vigentes para todas las personas viajeras.');
+            document.getElementById('destino').value = '';
+            destino = '';
+        }
+    }
+
+    function solicitarDocumentos() {
+        const modal = document.getElementById('documentosModal');
+        const aceptar = document.getElementById('documentosSi');
+        const rechazar = document.getElementById('documentosNo');
+        modal.classList.remove('oculto');
+        aceptar.focus();
+        return new Promise(resolve => {
+            const cerrar = resultado => {
+                modal.classList.add('oculto');
+                aceptar.removeEventListener('click', aceptarHandler);
+                rechazar.removeEventListener('click', rechazarHandler);
+                resolve(resultado);
+            };
+            const aceptarHandler = () => cerrar(true);
+            const rechazarHandler = () => cerrar(false);
+            aceptar.addEventListener('click', aceptarHandler);
+            rechazar.addEventListener('click', rechazarHandler);
+        });
+    }
+
     // 1. Ocultar absolutamente todas las sub-opciones
     document.querySelectorAll('.sub-opcion').forEach(elemento => {
         elemento.classList.add('oculto');
@@ -100,9 +129,130 @@ function manejarDestino(destino) {
     }
 }
 
-// Evento de envío del formulario
-document.getElementById('formCotizacion').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert("¡Cotización guardada exitosamente!");
-    // Aquí va tu lógica de envío (fetch, base de datos, etc.)
-});
+(function () {
+    const user = OhHappyTripDB.currentUser();
+    const form = document.getElementById('formCotizacion');
+    const sessionBar = document.getElementById('sesionCliente');
+    const quotesSection = document.getElementById('misCotizaciones');
+    const list = document.getElementById('listaCliente');
+    const newQuoteButton = document.getElementById('nuevaCotizacion');
+    const clienteAvanzar = document.getElementById('clienteAvanzar');
+    const statusLabels = {
+        pendiente: 'Pendiente',
+        en_revision: 'En revisión',
+        lista: 'Lista para el cliente',
+        revisada: 'En revisión',
+        check: 'Lista para el cliente'
+    };
+
+    if (!user || user.role !== 'client') {
+        window.location.href = user && user.role === 'admin' ? 'admin.html' : 'auth.html';
+        return;
+    }
+
+    sessionBar.innerHTML = `Hola, <strong>${escapeHtml(user.name)}</strong> · <button id="cerrarSesionCotizar" type="button">Cerrar sesión</button>`;
+    document.getElementById('cerrarSesionCotizar').addEventListener('click', OhHappyTripDB.logout);
+    document.getElementById('nombre').value = user.name;
+    document.getElementById('nombre').readOnly = true;
+    form.classList.add('oculto');
+    configurarFechas(document.getElementById('fechaInicio'), document.getElementById('fechaFin'));
+    configurarNavegacion(clienteAvanzar);
+    renderQuotes();
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+        const values = new FormData(form);
+        const quote = {
+            id: crypto.randomUUID(),
+            userId: user.id,
+            clientName: user.name,
+            clientUsername: user.username,
+            paisSalida: values.get('paisSalida'),
+            adultos: Number(values.get('adultos')),
+            ninos: Number(values.get('ninos')),
+            edades: Array.from({ length: Number(values.get('ninos')) }, (_, index) => values.get(`edad_nino_${index + 1}`)).filter(Boolean),
+            destino: values.get('destino'),
+            parques: values.getAll('parques'),
+            cruceros: values.getAll('cruceros'),
+            playaEspecifica: values.get('playaEspecifica'),
+            hospedaje: values.get('hospedaje'),
+            fechaInicio: values.get('fechaInicio'),
+            fechaFin: values.get('fechaFin'),
+            especificaciones: values.get('especificaciones'),
+            status: 'pendiente',
+            adminMessage: '',
+            createdAt: new Date().toISOString()
+        };
+        OhHappyTripDB.addQuote(quote);
+        form.reset();
+        document.querySelectorAll('.sub-opcion').forEach(element => element.classList.add('oculto'));
+        document.getElementById('seccion_hospedaje').classList.add('oculto');
+        renderQuotes();
+        form.classList.add('oculto');
+        alert('¡Cotización guardada en tu perfil!');
+    });
+
+    newQuoteButton.addEventListener('click', () => {
+        form.classList.remove('oculto');
+        form.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    function configurarNavegacion(forwardButton) {
+        const update = () => {
+            const navigation = window.navigation;
+            forwardButton.classList.toggle('oculto', !navigation || !navigation.canGoForward);
+        };
+        update();
+        if (window.navigation) window.navigation.addEventListener('navigate', update);
+    }
+
+    function renderQuotes() {
+        const quotes = OhHappyTripDB.read().quotes.filter(quote => quote.userId === user.id);
+        list.innerHTML = quotes.length ? quotes.map(quote => `
+            <article class="cotizacion-card">
+              <div class="cotizacion-card-cabecera">
+                <h3>${escapeHtml(quote.destino)}</h3>
+                <span class="estado estado-${quote.status}">${statusLabels[quote.status] || 'Pendiente'}</span>
+              </div>
+              <p><strong>Fechas:</strong> ${escapeHtml(quote.fechaInicio)} a ${escapeHtml(quote.fechaFin)}</p>
+              <p><strong>Viajeros:</strong> ${quote.adultos} adulto(s), ${quote.ninos} menor(es)</p>
+              ${quote.adminMessage ? `<p class="mensaje-admin"><strong>Mensaje de Oh Happy Trip:</strong><br>${escapeHtml(quote.adminMessage)}</p>` : '<p class="mensaje-pendiente">Aún no hay mensajes del equipo.</p>'}
+            </article>
+        `).join('') : '<div class="estado-vacio">Aún no tienes cotizaciones. Usa el botón + para crear la primera.</div>';
+    }
+
+    function configurarFechas(fechaInicio, fechaFin) {
+        const hoy = fechaLocalDeHoy();
+        fechaInicio.min = hoy;
+        fechaFin.min = hoy;
+        fechaInicio.addEventListener('change', () => {
+            fechaFin.min = fechaInicio.value || hoy;
+            if (fechaFin.value && fechaFin.value < fechaFin.min) {
+                fechaFin.value = '';
+            }
+            fechaFin.setCustomValidity('');
+        });
+        fechaFin.addEventListener('change', () => {
+            fechaFin.setCustomValidity(fechaFin.value && fechaInicio.value && fechaFin.value < fechaInicio.value
+                ? 'La fecha de fin no puede ser anterior a la fecha de inicio.'
+                : '');
+        });
+    }
+
+    function fechaLocalDeHoy() {
+        const hoy = new Date();
+        const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+        const dia = String(hoy.getDate()).padStart(2, '0');
+        return `${hoy.getFullYear()}-${mes}-${dia}`;
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, character => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+        }[character]));
+    }
+})();

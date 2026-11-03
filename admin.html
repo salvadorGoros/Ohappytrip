@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrar cotizaciones | Oh Happy Trip</title>
+  <link rel="icon" type="image/png" href="./static/img/ohHappyTripLogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body class="fondo">
+  <div class="fuegos-artificiales" aria-hidden="true">
+    <div class="fuego" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="fuego" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="fuego" style="left: 80%; animation-delay: 0.8s;"></div>
+    <div class="fuego" style="left: 35%; animation-delay: 2.2s;"></div>
+  </div>
+  <header class="estiloHeader">
+    <a class="logo-inicio" href="index.html" aria-label="Volver al inicio"><img src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip"></a>
+    <nav class="botones-nav" aria-label="Navegación principal">
+      <a href="cotizar.html" class="estilos"><i class="fa-solid fa-file-invoice-dollar"></i><span>Cotizar</span></a>
+      <a href="disney.html" class="estilos"><i class="fa-solid fa-hat-wizard"></i><span>Disney</span></a>
+      <a href="universal.html" class="estilos"><i class="fa-solid fa-earth-americas"></i><span>Universal</span></a>
+      <a href="cruceros.html" class="estilos"><i class="fa-solid fa-ship"></i><span>Cruceros</span></a>
+      <a href="playas.html" class="estilos"><i class="fa-solid fa-umbrella-beach"></i><span>Playas</span></a>
+      <a href="certificate.html" class="estilos"><i class="fa-solid fa-award"></i><span>Certificado</span></a>
+      <a href="cuenta.html" class="estilos"><i class="fa-solid fa-user"></i><span>Mi cuenta</span></a>
+    </nav>
+  </header>
+  <main class="panel-contenedor">
+    <div class="panel-cabecera">
+      <div>
+        <p class="inicio-eyebrow">Panel de administración</p>
+        <h1>Cotizaciones de clientes</h1>
+        <p>Revisa, actualiza el estado y envía mensajes desde un mismo lugar.</p>
+      </div>
+      <div class="panel-acciones">
+        <button class="btn-secundario" id="cerrarSesion" type="button">Cerrar sesión</button>
+      </div>
+    </div>
+    <p id="adminMensaje" class="auth-mensaje" role="status"></p>
+    <div class="navegacion-pagina">
+      <button class="btn-navegacion oculto" id="paginaSiguiente" type="button">Avanzar →</button>
+    </div>
+    <section id="listaAdmin" class="cotizaciones-lista" aria-label="Todas las cotizaciones" aria-live="polite"></section>
+    <section id="editarAdmin" class="editor-cotizacion oculto" aria-label="Editar cotización"></section>
+    <section class="cuentas-admin">
+      <h2>Cuentas de clientes</h2>
+      <p class="editor-contador">Eliminar una cuenta también elimina sus cotizaciones.</p>
+      <div id="listaCuentas"></div>
+    </section>
+    <section class="contenido-admin">
+      <h2>Editar páginas informativas</h2>
+      <p class="editor-contador">Selecciona una página y modifica sus textos o imágenes. Los cambios se guardan en este navegador.</p>
+      <label for="contenidoPagina">Página</label>
+      <select id="contenidoPagina"></select>
+      <p id="contenidoMensaje" class="auth-mensaje" role="status"></p>
+      <div id="contenidoEditor" class="contenido-editor"></div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+  <script src="content-manager.js"></script>
+  <script src="admin.js"></script>
+  <script src="content-admin.js"></script>
+  <script src="efectos.js"></script>
+</body>
+</html>

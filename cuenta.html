@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi cuenta | Oh Happy Trip</title>
+  <link rel="icon" type="image/png" href="./static/img/ohHappyTripLogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body class="fondo">
+  <div class="fuegos-artificiales" aria-hidden="true">
+    <div class="fuego" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="fuego" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="fuego" style="left: 80%; animation-delay: 0.8s;"></div>
+    <div class="fuego" style="left: 35%; animation-delay: 2.2s;"></div>
+  </div>
+  <header class="estiloHeader">
+    <a class="logo-inicio" href="index.html" aria-label="Volver al inicio"><img src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip"></a>
+    <nav class="botones-nav" aria-label="Navegación principal">
+      <a href="cotizar.html" class="estilos"><i class="fa-solid fa-file-invoice-dollar"></i><span>Cotizar</span></a>
+      <a href="disney.html" class="estilos"><i class="fa-solid fa-hat-wizard"></i><span>Disney</span></a>
+      <a href="universal.html" class="estilos"><i class="fa-solid fa-earth-americas"></i><span>Universal</span></a>
+      <a href="cruceros.html" class="estilos"><i class="fa-solid fa-ship"></i><span>Cruceros</span></a>
+      <a href="playas.html" class="estilos"><i class="fa-solid fa-umbrella-beach"></i><span>Playas</span></a>
+      <a href="certificate.html" class="estilos"><i class="fa-solid fa-award"></i><span>Certificado</span></a>
+      <a href="cuenta.html" class="estilos" aria-current="page"><i class="fa-solid fa-user"></i><span>Mi cuenta</span></a>
+    </nav>
+  </header>
+  <main class="auth-contenedor">
+    <div class="auth-card cuenta-card">
+      <p class="inicio-eyebrow">Perfil de cliente</p>
+      <h1>Mi cuenta</h1>
+      <div id="cuentaAviso" class="auth-mensaje" role="status"></div>
+      <form id="cuentaForm">
+        <div class="perfil-preview">
+          <img id="fotoPreview" class="foto-perfil" alt="Foto de perfil">
+          <span id="fotoInicial" class="foto-inicial"></span>
+        </div>
+        <label for="fotoPerfil">Foto de perfil</label>
+        <input id="fotoPerfil" type="file" accept="image/png,image/jpeg,image/webp">
+        <label for="cuentaNombre">Nombre completo</label>
+        <input id="cuentaNombre" required>
+        <label for="cuentaUsuario">Usuario</label>
+        <input id="cuentaUsuario" readonly>
+        <label for="cuentaPassword">Nueva contraseña <small>(déjala vacía para conservarla)</small></label>
+        <input id="cuentaPassword" type="password" minlength="6" autocomplete="new-password">
+        <button class="btn-guardar" type="submit">Guardar cambios</button>
+      </form>
+      <div class="panel-acciones cuenta-acciones">
+        <a class="btn-secundario" href="cotizar.html">Mis cotizaciones</a>
+        <button class="btn-secundario" id="cerrarCuenta" type="button">Cerrar sesión</button>
+      </div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+  <script src="cuenta.js"></script>
+  <script src="efectos.js"></script>
+</body>
+</html>

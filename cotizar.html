@@ -19,14 +19,17 @@
     </div>
 
     <header class="estiloHeader">
+      <a class="logo-inicio" href="index.html" aria-label="Volver al inicio">
+        <img src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip">
+      </a>
       <nav class="botones-nav" aria-label="Navegación principal">
-        <a href="index.html" class="estilos"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
         <a href="cotizar.html" class="estilos" aria-current="page"><i class="fa-solid fa-file-invoice-dollar"></i><span>Cotizar</span></a>
         <a href="disney.html" class="estilos"><i class="fa-solid fa-hat-wizard" aria-hidden="true"></i><span>Disney</span></a>
         <a href="universal.html" class="estilos"><i class="fa-solid fa-earth-americas"></i><span>Universal</span></a>
         <a href="cruceros.html" class="estilos"><i class="fa-solid fa-ship"></i><span>Cruceros</span></a>
         <a href="playas.html" class="estilos"><i class="fa-solid fa-umbrella-beach"></i><span>Playas</span></a>
         <a href="certificate.html" class="estilos"><i class="fa-solid fa-award"></i><span>Certificado</span></a>
+        <a href="cuenta.html" class="estilos"><i class="fa-solid fa-user"></i><span>Mi cuenta</span></a>
       </nav>
     </header>
     
@@ -38,6 +41,17 @@
         <span>Oh Happy Trip · Planeamos contigo</span>
       </div>
       <h2 class="cotizar-titulo">Cotiza tu viaje ideal</h2>
+      <div id="sesionCliente" class="sesion-barra"></div>
+      <div class="navegacion-pagina navegacion-cliente">
+        <button class="btn-navegacion oculto" id="clienteAvanzar" type="button">Avanzar →</button>
+      </div>
+      <section id="misCotizaciones" class="mis-cotizaciones" aria-labelledby="mis-cotizaciones-titulo">
+        <div class="seccion-cotizaciones-cabecera">
+          <h2 id="mis-cotizaciones-titulo">Mis cotizaciones</h2>
+          <button id="nuevaCotizacion" class="btn-secundario" type="button">+ Hacer otra cotización</button>
+        </div>
+        <div id="listaCliente" class="cotizaciones-grid"></div>
+      </section>
       <form id="formCotizacion">
         
         <div class="fila-form">
@@ -166,6 +180,17 @@
     </div>
   </main>
 
+  <div id="documentosModal" class="modal-documentos oculto" role="dialog" aria-modal="true" aria-labelledby="documentosTitulo">
+    <div class="modal-documentos-contenido">
+      <h2 id="documentosTitulo">Documentos necesarios</h2>
+      <p>¿Todas las personas que viajarán cuentan con visa y pasaporte vigentes?</p>
+      <div class="modal-documentos-acciones">
+        <button id="documentosSi" class="btn-guardar btn-pequeno" type="button">Sí</button>
+        <button id="documentosNo" class="btn-secundario" type="button">No</button>
+      </div>
+    </div>
+  </div>
+
   <!-- PIE DE PÁGINA -->
   <footer class="footer-elegante">
     <img class="footer-logo" src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip">
@@ -175,41 +200,8 @@
     </div>
   </footer>
 
+  <script src="app.js"></script>
   <script src="cotizar.js"></script>
-
-  <!-- EFECTOS DE CHISPAS Y EXPLOSIÓN AL CLIC -->
-  <script>
-    document.addEventListener("mousemove", function(e) {
-      if (Math.random() > 0.4) {
-        let chispa = document.createElement("span");
-        chispa.className = "chispa-magica";
-        chispa.style.left = e.clientX + "px";
-        chispa.style.top = e.clientY + "px";
-        
-        let tx = (Math.random() - 0.5) * 60 + "px"; 
-        let ty = (Math.random() * 60) + 20 + "px";  
-        chispa.style.setProperty("--tx", tx);
-        chispa.style.setProperty("--ty", ty);
-        
-        document.body.appendChild(chispa);
-        
-        setTimeout(() => {
-          chispa.remove();
-        }, 800);
-      }
-    });
-
-    document.addEventListener("click", function(e) {
-      let explosion = document.createElement("div");
-      explosion.className = "explosion-click";
-      explosion.style.left = e.clientX + "px";
-      explosion.style.top = e.clientY + "px";
-      document.body.appendChild(explosion);
-      
-      setTimeout(() => {
-        explosion.remove();
-      }, 800);
-    });
-  </script>
+  <script src="efectos.js"></script>
 </body>
 </html>

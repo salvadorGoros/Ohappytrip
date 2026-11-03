@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión | Oh Happy Trip</title>
+  <link rel="icon" type="image/png" href="./static/img/ohHappyTripLogo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body class="fondo">
+  <div class="fuegos-artificiales" aria-hidden="true">
+    <div class="fuego" style="left: 20%; animation-delay: 0s;"></div>
+    <div class="fuego" style="left: 50%; animation-delay: 1.5s;"></div>
+    <div class="fuego" style="left: 80%; animation-delay: 0.8s;"></div>
+    <div class="fuego" style="left: 35%; animation-delay: 2.2s;"></div>
+  </div>
+  <header class="estiloHeader">
+    <a class="logo-inicio" href="index.html" aria-label="Volver al inicio"><img src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip"></a>
+    <nav class="botones-nav" aria-label="Navegación principal">
+      <a href="cotizar.html" class="estilos"><i class="fa-solid fa-file-invoice-dollar"></i><span>Cotizar</span></a>
+      <a href="disney.html" class="estilos"><i class="fa-solid fa-hat-wizard"></i><span>Disney</span></a>
+      <a href="universal.html" class="estilos"><i class="fa-solid fa-earth-americas"></i><span>Universal</span></a>
+      <a href="cruceros.html" class="estilos"><i class="fa-solid fa-ship"></i><span>Cruceros</span></a>
+      <a href="playas.html" class="estilos"><i class="fa-solid fa-umbrella-beach"></i><span>Playas</span></a>
+      <a href="certificate.html" class="estilos"><i class="fa-solid fa-award"></i><span>Certificado</span></a>
+      <a href="cuenta.html" class="estilos"><i class="fa-solid fa-user"></i><span>Mi cuenta</span></a>
+    </nav>
+  </header>
+  <main class="auth-contenedor">
+    <div class="auth-card">
+      <img src="./static/img/ohHappyTripLogo.png" alt="Oh Happy Trip" class="auth-logo">
+      <p class="inicio-eyebrow">Viajes felices, planeados contigo</p>
+      <h1 id="auth-titulo">Iniciar sesión</h1>
+      <p id="auth-descripcion">Consulta tus cotizaciones y recibe mensajes de nuestro equipo.</p>
+      <form id="loginForm">
+        <label for="loginUsuario">Usuario</label>
+        <input id="loginUsuario" required autocomplete="username">
+        <label for="loginPassword">Contraseña</label>
+        <input id="loginPassword" type="password" required autocomplete="current-password">
+        <button class="btn-guardar" type="submit">Entrar</button>
+        <p id="loginError" class="auth-mensaje" role="alert"></p>
+      </form>
+      <button class="btn-secundario auth-mostrar-registro" id="mostrarRegistro" type="button">Crear una cuenta</button>
+      <hr id="separadorRegistro" class="oculto">
+      <form id="registroForm" class="oculto">
+        <h2>Crear cuenta de cliente</h2>
+        <label for="registroNombre">Nombre completo</label>
+        <input id="registroNombre" required>
+        <label for="registroUsuario">Usuario</label>
+        <input id="registroUsuario" required autocomplete="username">
+        <label for="registroPassword">Contraseña</label>
+        <input id="registroPassword" type="password" minlength="6" required autocomplete="new-password">
+        <button class="btn-secundario" type="submit">Registrarme</button>
+        <button class="btn-navegacion" id="cancelarRegistro" type="button">Volver a iniciar sesión</button>
+        <p id="registroMensaje" class="auth-mensaje" role="status"></p>
+      </form>
+      <a class="auth-regreso" href="index.html">Volver al inicio</a>
+    </div>
+  </main>
+  <script src="app.js"></script>
+  <script src="auth.js"></script>
+  <script src="efectos.js"></script>
+</body>
+</html>
