@@ -1,4 +1,4 @@
-// Función para aumentar o disminuir los contadores
+﻿// Función para aumentar o disminuir los contadores
 function actualizarContador(id, operacion) {
     let input = document.getElementById(id);
     let valorActual = parseInt(input.value) || 0;
