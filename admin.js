@@ -1,5 +1,5 @@
-(function () {
-  const user = OhHappyTripDB.currentUser();
+(async function () {
+  const user = await OhHappyTripDB.currentUser();
   if (!user || user.role !== 'admin') {
     window.location.href = 'auth.html';
     return;
@@ -22,13 +22,13 @@
     return statusLabels[status] ? status : 'pendiente';
   }
 
-  function quotes() {
-    return OhHappyTripDB.read().quotes;
-  }
+  let quoteData = [];
+  function quotes() { return quoteData; }
 
-  function renderList() {
+  async function renderList() {
+    quoteData = await OhHappyTripDB.quotes();
     const data = quotes();
-    const users = OhHappyTripDB.read().users;
+    const users = await OhHappyTripDB.profiles();
     list.innerHTML = '';
     editor.classList.add('oculto');
     list.classList.remove('oculto');
@@ -58,9 +58,9 @@
     });
   }
 
-  function renderEditor(id) {
+  async function renderEditor(id) {
     const data = quotes();
-    const users = OhHappyTripDB.read().users;
+    const users = await OhHappyTripDB.profiles();
     const quote = data.find(item => item.id === id);
     if (!quote) {
       renderList();
@@ -132,14 +132,15 @@
     if (event.target.closest('[data-previous]') && index > 0) renderEditor(data[index - 1].id);
     if (event.target.closest('[data-next]') && index < data.length - 1) renderEditor(data[index + 1].id);
     if (event.target.closest('[data-delete]') && window.confirm('¿Quieres borrar esta cotización?')) {
-      OhHappyTripDB.deleteQuote(selectedId);
+      OhHappyTripDB.deleteQuote(selectedId).then(() => {
       message.textContent = 'Cotización borrada.';
       renderList();
+      }).catch(error => { message.textContent = error.message; });
     }
     if (event.target.closest('[data-save]')) saveQuote();
   });
 
-  function saveQuote() {
+  async function saveQuote() {
     const destino = editor.querySelector('[data-destino]').value.trim();
     const fechaInicio = editor.querySelector('[data-inicio]').value;
     const fechaFin = editor.querySelector('[data-fin]').value;
@@ -147,7 +148,8 @@
       message.textContent = 'Revisa destino y fechas: no pueden ser pasadas y el fin debe ser posterior al inicio.';
       return;
     }
-    OhHappyTripDB.updateQuote(selectedId, {
+    try {
+    await OhHappyTripDB.updateQuote(selectedId, {
       status: editor.querySelector('[data-status]').value,
       adminMessage: editor.querySelector('[data-message]').value.trim(),
       destino,
@@ -156,7 +158,10 @@
       especificaciones: editor.querySelector('[data-especificaciones]').value.trim()
     });
     message.textContent = 'Cotización actualizada.';
-    renderEditor(selectedId);
+    await renderEditor(selectedId);
+    } catch (error) {
+      message.textContent = error.message;
+    }
   }
 
   function configurarFechas(fechaInicio, fechaFin) {
@@ -177,11 +182,11 @@
   document.getElementById('paginaSiguiente').addEventListener('click', () => window.history.forward());
   document.getElementById('cerrarSesion').addEventListener('click', OhHappyTripDB.logout);
   configurarNavegacion(document.getElementById('paginaSiguiente'));
-  renderList();
-  renderAccounts();
+  await renderList();
+  await renderAccounts();
 
-  function renderAccounts() {
-    const clients = OhHappyTripDB.read().users.filter(item => item.role === 'client');
+  async function renderAccounts() {
+    const clients = (await OhHappyTripDB.profiles()).filter(item => item.role === 'client');
     accountsList.innerHTML = clients.length ? clients.map(client => `
       <div class="cuenta-admin-fila">
         <div class="cliente-editor">
@@ -193,14 +198,14 @@
     `).join('') : '<p class="editor-contador">No hay cuentas de clientes.</p>';
   }
 
-  accountsList.addEventListener('click', event => {
+  accountsList.addEventListener('click', async event => {
     const button = event.target.closest('[data-delete-user]');
     if (!button || !window.confirm('¿Eliminar esta cuenta y sus cotizaciones?')) return;
     try {
-      OhHappyTripDB.deleteUser(button.dataset.deleteUser);
+      await OhHappyTripDB.deleteUser(button.dataset.deleteUser);
       message.textContent = 'Cuenta eliminada.';
-      renderList();
-      renderAccounts();
+      await renderList();
+      await renderAccounts();
     } catch (error) {
       message.textContent = error.message;
     }

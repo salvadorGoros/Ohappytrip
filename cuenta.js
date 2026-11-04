@@ -1,5 +1,5 @@
-(function () {
-  const user = OhHappyTripDB.currentUser();
+(async function () {
+  const user = await OhHappyTripDB.currentUser();
   if (!user) {
     window.location.href = 'auth.html';
     return;
@@ -38,9 +38,9 @@
         profileImage: photo
       };
       const password = document.getElementById('cuentaPassword').value;
-      if (password) changes.passwordHash = await OhHappyTripDB.hash(password);
+      if (password) changes.password = password;
       if (!changes.name) throw new Error('Escribe un nombre válido.');
-      OhHappyTripDB.updateUser(user.id, changes);
+      await OhHappyTripDB.updateUser(user.id, changes);
       aviso.textContent = 'Tus datos se actualizaron correctamente.';
     } catch (error) {
       aviso.textContent = error.message;

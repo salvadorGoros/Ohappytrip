@@ -129,8 +129,8 @@ async function manejarDestino(destino) {
     }
 }
 
-(function () {
-    const user = OhHappyTripDB.currentUser();
+(async function () {
+    const user = await OhHappyTripDB.currentUser();
     const form = document.getElementById('formCotizacion');
     const sessionBar = document.getElementById('sesionCliente');
     const quotesSection = document.getElementById('misCotizaciones');
@@ -157,9 +157,9 @@ async function manejarDestino(destino) {
     form.classList.add('oculto');
     configurarFechas(document.getElementById('fechaInicio'), document.getElementById('fechaFin'));
     configurarNavegacion(clienteAvanzar);
-    renderQuotes();
+    await renderQuotes();
 
-    form.addEventListener('submit', event => {
+    form.addEventListener('submit', async event => {
         event.preventDefault();
         if (!form.checkValidity()) {
             form.reportValidity();
@@ -187,11 +187,16 @@ async function manejarDestino(destino) {
             adminMessage: '',
             createdAt: new Date().toISOString()
         };
-        OhHappyTripDB.addQuote(quote);
+        try {
+        await OhHappyTripDB.addQuote(quote);
+        } catch (error) {
+            alert(`No se pudo guardar la cotización: ${error.message}`);
+            return;
+        }
         form.reset();
         document.querySelectorAll('.sub-opcion').forEach(element => element.classList.add('oculto'));
         document.getElementById('seccion_hospedaje').classList.add('oculto');
-        renderQuotes();
+        await renderQuotes();
         form.classList.add('oculto');
         alert('¡Cotización guardada en tu perfil!');
     });
@@ -210,8 +215,8 @@ async function manejarDestino(destino) {
         if (window.navigation) window.navigation.addEventListener('navigate', update);
     }
 
-    function renderQuotes() {
-        const quotes = OhHappyTripDB.read().quotes.filter(quote => quote.userId === user.id);
+    async function renderQuotes() {
+        const quotes = (await OhHappyTripDB.quotes()).filter(quote => quote.userId === user.id);
         list.innerHTML = quotes.length ? quotes.map(quote => `
             <article class="cotizacion-card">
               <div class="cotizacion-card-cabecera">

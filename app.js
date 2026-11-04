@@ -1,121 +1,171 @@
 (function () {
-  const DB_KEY = 'ohHappyTripDB';
-  const SESSION_KEY = 'ohHappyTripSession';
-  const ADMIN_PASSWORD_HASH = '21361d1d4baaf37c4f3213629ff141c5ceb9e18bcd0f763a95c97b834065803e';
+  const client = window.supabaseClient;
 
-  function read() {
+  function requireClient() {
+    if (!client) throw new Error('No se pudo conectar con Supabase.');
+    return client;
+  }
+
+  function profileFromRow(row) {
+    return {
+      id: row.id,
+      name: row.name,
+      username: row.username,
+      email: row.email,
+      role: row.role,
+      profileImage: row.avatar_url || '',
+      createdAt: row.created_at
+    };
+  }
+
+  function quoteFromRow(row) {
+    return {
+      id: row.id,
+      userId: row.user_id,
+      clientName: row.name,
+      clientUsername: row.profiles?.username || '',
+      paisSalida: row.country_of_departure,
+      adultos: row.adults,
+      ninos: row.children,
+      edades: row.children_ages || [],
+      destino: row.destination,
+      parques: row.parks || [],
+      cruceros: row.cruises || [],
+      playaEspecifica: row.specific_beach || '',
+      hospedaje: row.lodging || '',
+      fechaInicio: row.start_date,
+      fechaFin: row.end_date,
+      especificaciones: row.specifications || '',
+      status: row.status,
+      adminMessage: row.admin_message || '',
+      createdAt: row.created_at,
+      updatedAt: row.updated_at
+    };
+  }
+
+  async function currentUser() {
+    const { data: sessionData, error: sessionError } = await requireClient().auth.getSession();
+    if (sessionError) throw sessionError;
+    if (!sessionData.session) return null;
+    const { data, error } = await client.from('profiles').select('*').eq('id', sessionData.session.user.id).single();
+    if (error) throw error;
+    return profileFromRow(data);
+  }
+
+  async function profiles() {
+    const { data, error } = await requireClient().from('profiles').select('*').order('created_at', { ascending: true });
+    if (error) throw error;
+    return data.map(profileFromRow);
+  }
+
+  async function quotes() {
+    const { data, error } = await requireClient()
+      .from('quotes')
+      .select('*, profiles(username)')
+      .order('created_at', { ascending: false });
+    if (error) throw error;
+    return data.map(quoteFromRow);
+  }
+
+  async function updateAdminNav() {
     try {
-      return JSON.parse(localStorage.getItem(DB_KEY)) || { users: [], quotes: [] };
-    } catch (error) {
-      console.error('No se pudo leer la base de datos local.', error);
-      return { users: [], quotes: [] };
-    }
-  }
-
-  function write(data) {
-    localStorage.setItem(DB_KEY, JSON.stringify(data));
-  }
-
-  async function hash(value) {
-    const bytes = new TextEncoder().encode(value);
-    const digest = await crypto.subtle.digest('SHA-256', bytes);
-    return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
-  }
-
-  function ensureAdmin() {
-    const data = read();
-    if (!data.users.some(user => user.role === 'admin')) {
-      data.users.push({
-        id: crypto.randomUUID(),
-        name: 'Andrea Lugo',
-        username: 'AndreaLugo',
-        passwordHash: ADMIN_PASSWORD_HASH,
-        role: 'admin',
-        createdAt: new Date().toISOString()
+      const user = await currentUser();
+      const isAdmin = user && user.role === 'admin';
+      document.querySelectorAll('a[href="cotizar.html"], a[href="admin.html"]').forEach(link => {
+        link.href = isAdmin ? 'admin.html' : 'cotizar.html';
+        const label = link.querySelector('span');
+        if (label) label.textContent = isAdmin ? 'Administrar' : 'Cotizar';
       });
-      write(data);
+    } catch (error) {
+      console.error('No se pudo actualizar la navegación.', error);
     }
-
-  }
-
-  function currentUser() {
-    const username = sessionStorage.getItem(SESSION_KEY);
-    return read().users.find(user => user.username === username) || null;
-  }
-
-  function updateAdminNav() {
-    const user = currentUser();
-    const isAdmin = user && user.role === 'admin';
-    document.querySelectorAll('a[href="cotizar.html"], a[href="admin.html"]').forEach(link => {
-      link.href = isAdmin ? 'admin.html' : 'cotizar.html';
-      const label = link.querySelector('span');
-      if (label) label.textContent = isAdmin ? 'Administrar' : 'Cotizar';
-    });
-  }
-
-  function setSession(user) {
-    sessionStorage.setItem(SESSION_KEY, user.username);
-  }
-
-  function logout() {
-    sessionStorage.removeItem(SESSION_KEY);
-    window.location.href = 'auth.html';
   }
 
   window.OhHappyTripDB = {
-    read,
-    write,
-    hash,
-    ensureAdmin,
     currentUser,
-    setSession,
-    logout,
-    addUser(user) {
-      const data = read();
-      if (data.users.some(item => item.username.toLowerCase() === user.username.toLowerCase())) {
-        throw new Error('Ese nombre de usuario ya está registrado.');
+    profiles,
+    quotes,
+    async login(username, password) {
+      const { data: email, error: profileError } = await client
+        .rpc('get_login_email', { p_username: username.trim() });
+      if (profileError) throw profileError;
+      if (!email) throw new Error('Usuario o contraseña incorrectos.');
+      const result = await client.auth.signInWithPassword({ email, password });
+      if (result.error) throw new Error('Usuario o contraseña incorrectos.');
+      return currentUser();
+    },
+    async register(name, username, password) {
+      const email = `${username.toLowerCase()}@ohappytrip.local`;
+      const result = await client.auth.signUp({
+        email,
+        password,
+        options: { data: { name, username } }
+      });
+      if (result.error) throw result.error;
+      if (!result.data.session) {
+        throw new Error('Registro creado. Desactiva la confirmación de correo en Supabase para iniciar automáticamente.');
       }
-      data.users.push(user);
-      write(data);
+      return currentUser();
     },
-    addQuote(quote) {
-      const data = read();
-      data.quotes.unshift(quote);
-      write(data);
+    async addQuote(quote) {
+      const { data, error } = await client.from('quotes').insert({
+        user_id: quote.userId,
+        name: quote.clientName,
+        country_of_departure: quote.paisSalida,
+        adults: quote.adultos,
+        children: quote.ninos,
+        children_ages: quote.edades,
+        destination: quote.destino,
+        parks: quote.parques,
+        cruises: quote.cruceros,
+        specific_beach: quote.playaEspecifica,
+        lodging: quote.hospedaje,
+        start_date: quote.fechaInicio,
+        end_date: quote.fechaFin,
+        specifications: quote.especificaciones,
+        status: 'pendiente',
+        admin_message: ''
+      }).select().single();
+      if (error) throw error;
+      return quoteFromRow(data);
     },
-    updateQuote(id, changes) {
-      const data = read();
-      const quote = data.quotes.find(item => item.id === id);
-      if (!quote) throw new Error('La cotización no existe.');
-      Object.assign(quote, changes, { updatedAt: new Date().toISOString() });
-      write(data);
+    async updateQuote(id, changes) {
+      const payload = {
+        status: changes.status,
+        admin_message: changes.adminMessage,
+        destination: changes.destino,
+        start_date: changes.fechaInicio,
+        end_date: changes.fechaFin,
+        specifications: changes.especificaciones,
+        updated_at: new Date().toISOString()
+      };
+      const { error } = await client.from('quotes').update(payload).eq('id', id);
+      if (error) throw error;
     },
-    deleteQuote(id) {
-      const data = read();
-      data.quotes = data.quotes.filter(item => item.id !== id);
-      write(data);
+    async deleteQuote(id) {
+      const { error } = await client.from('quotes').delete().eq('id', id);
+      if (error) throw error;
     },
-    updateUser(id, changes) {
-      const data = read();
-      const user = data.users.find(item => item.id === id);
-      if (!user) throw new Error('La cuenta no existe.');
-      Object.assign(user, changes);
-      write(data);
+    async updateUser(id, changes) {
+      const payload = { name: changes.name, avatar_url: changes.profileImage || null };
+      const { error } = await client.from('profiles').update(payload).eq('id', id);
+      if (error) throw error;
+      if (changes.password) {
+        const { error: passwordError } = await client.auth.updateUser({ password: changes.password });
+        if (passwordError) throw passwordError;
+      }
     },
-    deleteUser(id) {
-      const data = read();
-      const user = data.users.find(item => item.id === id);
-      if (!user || user.role === 'admin') throw new Error('No se puede eliminar esta cuenta.');
-      data.users = data.users.filter(item => item.id !== id);
-      data.quotes = data.quotes.filter(item => item.userId !== id);
-      write(data);
+    async deleteUser(id) {
+      throw new Error('Las cuentas deben eliminarse desde Supabase Authentication para mantener la seguridad.');
+    },
+    async logout() {
+      const { error } = await requireClient().auth.signOut();
+      if (error) throw error;
+      window.location.href = 'auth.html';
     }
   };
 
-  ensureAdmin();
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateAdminNav);
-  } else {
-    updateAdminNav();
-  }
+  const start = () => updateAdminNav();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
 })();
